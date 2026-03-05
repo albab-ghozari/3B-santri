@@ -95,7 +95,7 @@
 		if (!selectedSantri) return showAlert('error', 'Pilih santri terlebih dahulu.');
 		isSubmitting = true;
 		try {
-			const res = await fetch('http://localhost:3000/api/nilai-santri', {
+			const res = await fetch(`${baseUrl}/api/nilai-santri`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
