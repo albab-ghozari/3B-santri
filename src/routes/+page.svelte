@@ -5,7 +5,7 @@
 	let showPassword = false;
 	let isLoading = false;
 	let errorMessage = '';
-	const baseUrl = import.meta.env.API_BASE_URL
+	const baseUrl = import.meta.env.VITE_API_BASE_URL
 
 	async function handleLogin() {
 		if (!username || !password) {

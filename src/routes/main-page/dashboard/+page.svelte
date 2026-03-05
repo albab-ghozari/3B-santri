@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	const baseUrl = import.meta.env.API_BASE_URL
+	const baseUrl = import.meta.env.VITE_API_BASE_URL
 
 	// ── Types ──────────────────────────────────────────────────────────────
 	type RekapKamar = {

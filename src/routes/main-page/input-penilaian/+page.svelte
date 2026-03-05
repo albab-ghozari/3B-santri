@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	const baseUrl = import.meta.env.API_BASE_URL
+	const baseUrl = import.meta.env.VITE_API_BASE_URL
 
 	type Santri = { id: number; nama: string; kamar?: { nomor: string; gedung?: string } };
 	type Kamar = { id: number; nomor: string; gedung: string };
@@ -46,8 +46,8 @@
 		const h = { Authorization: `Bearer ${token}` };
 		try {
 			const [rS, rK] = await Promise.all([
-				fetch('http://localhost:3000/api/santri', { headers: h }),
-				fetch('http://localhost:3000/api/kamar', { headers: h })
+				fetch(`${baseUrl}/api/santri`, { headers: h }),
+				fetch(`${baseUrl}/api/kamar`, { headers: h })
 			]);
 			allSantri = await rS.json();
 			allKamar = await rK.json();
@@ -118,7 +118,7 @@
 		if (!selectedKamar) return showAlert('error', 'Pilih kamar terlebih dahulu.');
 		isSubmitting = true;
 		try {
-			const res = await fetch('http://localhost:3000/api/nilai-kamar', {
+			const res = await fetch(`${baseUrl}/api/nilai-kamar`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
