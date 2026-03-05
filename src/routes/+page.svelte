@@ -5,7 +5,7 @@
 	let showPassword = false;
 	let isLoading = false;
 	let errorMessage = '';
-	const baseUrl = import.meta.env.API_BASE_URL || 'http://localhost:3000';
+	const baseUrl = import.meta.env.API_BASE_URL
 
 	async function handleLogin() {
 		if (!username || !password) {
@@ -17,7 +17,7 @@
 		errorMessage = '';
 
 		try {
-			const res = await fetch('https://3b-santri-production.up.railway.app/api/login', {
+			const res = await fetch(`${baseUrl}/api/login`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ username, password })

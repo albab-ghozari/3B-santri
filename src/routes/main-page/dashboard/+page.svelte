@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	const baseUrl = import.meta.env.API_BASE_URL
 
 	// ── Types ──────────────────────────────────────────────────────────────
 	type RekapKamar = {
@@ -63,7 +64,7 @@
 		// Kamar
 		loadingKamar = true;
 		try {
-			const res = await fetch('http://localhost:3000/api/rekap-kamar-mingguan', { headers });
+			const res = await fetch(`${baseUrl}/api/rekap-kamar-mingguan`, { headers });
 			if (!res.ok) throw new Error('Gagal mengambil data kamar');
 			rekapKamar = await res.json();
 		} catch (e) {
@@ -75,7 +76,7 @@
 		// Santri
 		loadingSantri = true;
 		try {
-			const res = await fetch('http://localhost:3000/api/rekap-mingguan', { headers });
+			const res = await fetch(`${baseUrl}/api/rekap-mingguan`, { headers });
 			if (!res.ok) throw new Error('Gagal mengambil data santri');
 			rekapSantri = await res.json();
 		} catch (e) {

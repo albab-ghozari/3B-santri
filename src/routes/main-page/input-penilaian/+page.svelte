@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	const baseUrl = import.meta.env.API_BASE_URL
 
 	type Santri = { id: number; nama: string; kamar?: { nomor: string; gedung?: string } };
 	type Kamar = { id: number; nomor: string; gedung: string };
