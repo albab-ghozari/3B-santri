@@ -5,6 +5,7 @@
 	let showPassword = false;
 	let isLoading = false;
 	let errorMessage = '';
+	const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
 
 	async function handleLogin() {
 		if (!username || !password) {
