@@ -17,7 +17,7 @@
 		errorMessage = '';
 
 		try {
-			const res = await fetch('http://3b-santri-production.up.railway.app/api/login', {
+			const res = await fetch('https://3b-santri-production.up.railway.app/api/login', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ username, password })
