@@ -19,20 +19,20 @@
 		}
 	];
 
-	function closeMenu(): void {
+	const closeMenu = () => {
 		menuOpen = false;
-	}
+	};
 
-	function confirmLogout(): void {
+	const confirmLogout = () => {
 		showLogoutConfirm = true;
 		menuOpen = false;
-	}
+	};
 
-	function cancelLogout(): void {
+	const cancelLogout = () => {
 		showLogoutConfirm = false;
 	}
 
-	function doLogout(): void {
+	function doLogout (): void {
 		localStorage.removeItem('token');
 		localStorage.removeItem('nama');
 		showLogoutConfirm = false;
@@ -46,12 +46,13 @@
 {#if showLogoutConfirm}
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<div
-		class="fixed inset-0 z-[100] flex items-center justify-center p-4"
+		class="fixed inset-0 z-100 flex items-center justify-center p-4"
 		on:click={cancelLogout}
 		on:keydown={(e) => e.key === 'Escape' && cancelLogout()}
 		role="dialog"
 		aria-modal="true"
 		aria-labelledby="logout-title"
+		tabindex="0"
 	>
 		<!-- Backdrop -->
 		<div class="absolute inset-0 bg-black/30 backdrop-blur-sm"></div>

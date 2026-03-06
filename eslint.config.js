@@ -8,18 +8,25 @@ import svelteConfig from './svelte.config.js';
 
 const gitignorePath = path.resolve(import.meta.dirname, '.gitignore');
 
-/** @type {import('eslint').Linter.Config[]} */ export default [
+/** @type {import('eslint').Linter.Config[]} */
+export default [
 	includeIgnoreFile(gitignorePath),
 	js.configs.recommended,
 	...svelte.configs.recommended,
 	prettier,
 	...svelte.configs.prettier,
 	{
-		languageOptions: { globals: { ...globals.browser, ...globals.node } }
+		languageOptions: {
+			globals: { ...globals.browser, ...globals.node }
+		}
 	},
-
 	{
-		files: ['**/*.svelte', '**/*.svelte.js'],
-		languageOptions: { parserOptions: { svelteConfig } }
+		files: ['**/*.svelte', '**/*.svelte.ts'],
+		languageOptions: {
+			parserOptions: {
+				svelteConfig,
+				extraFileExtensions: ['.svelte']
+			}
+		}
 	}
 ];

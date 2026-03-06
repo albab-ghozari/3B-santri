@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	const baseUrl = import.meta.env.VITE_API_BASE_URL
+	const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 	type Santri = { id: number; nama: string; kamar?: { nomor: string; gedung?: string } };
 	type Kamar = { id: number; nomor: string; gedung: string };
@@ -71,7 +71,7 @@
 
 	function selectKamar(k: Kamar): void {
 		selectedKamar = k;
-		kamarQuery = `Kamar ${k.nomor} ${k.gedung ?? ""}`.trim();;
+		kamarQuery = `Kamar ${k.nomor} ${k.gedung ?? ''}`.trim();
 		showKamarDropdown = false;
 	}
 
@@ -197,49 +197,6 @@
 	</header>
 
 	<main class="mx-auto max-w-xl space-y-4 px-4 py-5 pb-10">
-		<!-- Alert -->
-		{#if alertState}
-			<div
-				class="alert-in flex items-start gap-2.5 rounded-2xl border px-4 py-3 text-sm font-medium
-          {alertState.type === 'success'
-					? 'border-emerald-100 bg-emerald-50 text-emerald-700'
-					: 'border-red-100 bg-red-50 text-red-600'}"
-				role="alert"
-			>
-				{#if alertState.type === 'success'}
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						class="mt-0.5 h-4 w-4 shrink-0"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-						stroke-width="2.5"
-						aria-hidden="true"
-					>
-						<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-					</svg>
-				{:else}
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						class="mt-0.5 h-4 w-4 shrink-0"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-						stroke-width="2.5"
-						aria-hidden="true"
-					>
-						<circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line
-							x1="12"
-							y1="16"
-							x2="12.01"
-							y2="16"
-						/>
-					</svg>
-				{/if}
-				{alertState.msg}
-			</div>
-		{/if}
-
 		<!-- Tab -->
 		<div
 			class="flex gap-1 rounded-2xl border border-gray-100 bg-white p-1.5 shadow-sm"
@@ -299,6 +256,49 @@
 			</button>
 		</div>
 
+		<!-- Alert -->
+		{#if alertState}
+			<div
+				class="alert-in flex items-start gap-2.5 rounded-2xl border px-4 py-3 text-sm font-medium
+          {alertState.type === 'success'
+					? 'border-emerald-100 bg-emerald-50 text-emerald-700'
+					: 'border-red-100 bg-red-50 text-red-600'}"
+				role="alert"
+			>
+				{#if alertState.type === 'success'}
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="mt-0.5 h-4 w-4 shrink-0"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+						stroke-width="2.5"
+						aria-hidden="true"
+					>
+						<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+					</svg>
+				{:else}
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="mt-0.5 h-4 w-4 shrink-0"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+						stroke-width="2.5"
+						aria-hidden="true"
+					>
+						<circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line
+							x1="12"
+							y1="16"
+							x2="12.01"
+							y2="16"
+						/>
+					</svg>
+				{/if}
+				{alertState.msg}
+			</div>
+		{/if}
+
 		<!-- ══ SANTRI FORM ══ -->
 		{#if activeTab === 'santri'}
 			<div class="fade-up overflow-visible rounded-3xl border border-gray-100 bg-white shadow-sm">
@@ -312,7 +312,7 @@
 				</div>
 
 				<div class="space-y-3 px-5 py-4">
-					{#if !selectedSantri && !selectedKamar }
+					{#if !selectedSantri && !selectedKamar}
 						<!-- Search santri -->
 						<!-- svelte-ignore a11y_no_static_element_interactions -->
 						<div
@@ -341,15 +341,15 @@
 								</svg>
 							</span>
 							<input
-              class="w-full rounded-xl border border-gray-200 bg-gray-50 py-3 pr-4 pl-10 text-sm text-gray-800 placeholder-gray-300 transition-all focus:border-transparent focus:bg-white focus:ring-2 focus:ring-emerald-400 focus:outline-none"
-              type="text"
-              placeholder="Cari nama santri…"
-              bind:value={santriQuery}
-              on:focus={() => (showSantriDropdown = true)}
-              on:input={() => (showSantriDropdown = true)}
-              autocomplete="off"
-              aria-label="Cari santri"
-              aria-haspopup="listbox"
+								class="w-full rounded-xl border border-gray-200 bg-gray-50 py-3 pr-4 pl-10 text-sm text-gray-800 placeholder-gray-300 transition-all focus:border-transparent focus:bg-white focus:ring-2 focus:ring-emerald-400 focus:outline-none"
+								type="text"
+								placeholder="Cari nama santri…"
+								bind:value={santriQuery}
+								on:focus={() => (showSantriDropdown = true)}
+								on:input={() => (showSantriDropdown = true)}
+								autocomplete="off"
+								aria-label="Cari santri"
+								aria-haspopup="listbox"
 							/>
 							{#if showSantriDropdown}
 								<div class="dropdown" role="listbox" aria-label="Daftar santri">
@@ -379,7 +379,10 @@
 												<div class="min-w-0">
 													<p class="truncate text-sm font-semibold text-gray-800">{s.nama}</p>
 													{#if s.kamar}
-														<p class="text-xs text-gray-400">Kamar {s.kamar.nomor} {s.kamar?.gedung}</p>
+														<p class="text-xs text-gray-400">
+															Kamar {s.kamar.nomor}
+															{s.kamar?.gedung}
+														</p>
 													{/if}
 												</div>
 											</button>
@@ -997,9 +1000,7 @@
 				Centang = tidak rapi (+1 poin)
 			</span>
 			<span class="flex items-center gap-1.5">
-				<span
-					class="h-4 w-4 shrink-0 rounded border-2 border-gray-300 bg-white"
-					aria-hidden="true"
+				<span class="h-4 w-4 shrink-0 rounded border-2 border-gray-300 bg-white" aria-hidden="true"
 				></span>
 				Kosong = rapi (0 poin)
 			</span>
